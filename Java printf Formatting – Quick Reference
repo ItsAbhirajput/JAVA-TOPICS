@@ -1,0 +1,91 @@
+//HERE IS A SINGLE SHOT PROGRAM THAT REPRESENT ALL THESE FORMATING.
+public class PrintfDemo {
+    public static void main(String[] args) {
+        System.out.println("=== Java printf() Formatting Demo ===\n");
+
+        // 1️⃣ Common Format Specifiers
+        int intVal = 42;
+        double doubleVal = 3.14159;
+        String strVal = "Hello";
+        char charVal = 'A';
+        boolean boolVal = true;
+
+        System.out.println("-- Common Specifiers --");
+        System.out.printf("Integer: %d%n", intVal);            // %d
+        System.out.printf("Float: %.2f%n", doubleVal);         // %f (2 decimal places)
+        System.out.printf("String: %s%n", strVal);             // %s
+        System.out.printf("Character: %c%n", charVal);         // %c
+        System.out.printf("Boolean: %b%n", boolVal);           // %b
+        System.out.printf("Scientific: %e%n", doubleVal);      // %e
+        System.out.printf("Percent sign: %% %n");              // %% literal %
+
+        // 2️⃣ Width & Alignment
+        System.out.println("\n-- Width & Alignment --");
+        System.out.printf("Right-aligned: %10d%n", intVal);    // width=10, right-align
+        System.out.printf("Left-aligned: %-10dEND%n", intVal); // width=10, left-align
+
+        // 3️⃣ Precision
+        System.out.println("\n-- Precision --");
+        System.out.printf("Two decimals: %.2f%n", doubleVal); // 2 decimal places
+        System.out.printf("String first 3 chars: %.3s%n", strVal); // first 3 characters
+
+        // 4️⃣ Combining Width & Precision
+        System.out.println("\n-- Width & Precision Combined --");
+        System.out.printf("Width 10, 2 decimals: %10.2f%n", doubleVal);
+        System.out.printf("Left-align width 10, 2 decimals: %-10.2fEND%n", doubleVal);
+
+        // 5️⃣ Padding & Flags
+        System.out.println("\n-- Padding & Flags --");
+        int negative = -42;
+        int largeNum = 1000000;
+
+        System.out.printf("Pad with zeros: %05d%n", intVal);  // 00042
+        System.out.printf("Show sign: %+d%n", intVal);       // +42
+        System.out.printf("Left-align: %-5dEND%n", intVal);  // 42   
+        System.out.printf("Group digits: %,d%n", largeNum);  // 1,000,000
+        System.out.printf("Negative in parentheses: %(d%n", negative); // (42)
+
+        // 6️⃣ Table Example 
+        System.out.println("\n-- Table Example --");
+        String s = "java";
+        int x = 7;
+        System.out.printf("%-15s%03d%n", s, x);
+        System.out.printf("%-15s%03d%n", "C++", 42);
+        System.out.printf("%-15s%03d%n", "Python", 123);
+    }
+}
+
+This one-page cheat sheet.
+
+1️⃣ Common Format Specifiers
+| Specifier | Type         | Example                   | Output       |
+| --------- | ------------ | ------------------------- | ------------ |
+| `%d`      | Integer      | `printf("%d", 42)`        | 42           |
+| `%f`      | Float/Double | `printf("%.2f", 3.14159)` | 3.14         |
+| `%s`      | String       | `printf("%s", "Hello")`   | Hello        |
+| `%c`      | Char         | `printf("%c", 'A')`       | A            |
+| `%b`      | Boolean      | `printf("%b", true)`      | true         |
+| `%e`      | Scientific   | `printf("%e", 1234.56)`   | 1.234560e+03 |
+| `%%`      | Literal %    | `printf("%%")`            | %            |
+
+2️⃣ Width & Alignment
+| Syntax  | Meaning                          | Example | Output       |
+| ------- | -------------------------------- | ------- | ------------ |
+| `%10d`  | Right-align integer in 10 spaces | `123`   | `       123` |
+| `%-10d` | Left-align integer in 10 spaces  | `123`   | `123       ` |
+
+3️⃣ Precision
+| Syntax | Meaning                 | Example      | Output |
+| ------ | ----------------------- | ------------ | ------ |
+| `%.2f` | 2 decimals              | `3.14159`    | 3.14   |
+| `%.5s` | First 5 chars of string | `HelloWorld` | Hello  |
+
+5️⃣ Padding & Flags
+| Flag | Meaning                 | Example        | Output    |
+| ---- | ----------------------- | -------------- | --------- |
+| `0`  | Pad with zeros          | `%05d`, 42     | 00042     |
+| `+`  | Show sign               | `%+d`, 42      | +42       |
+| `-`  | Left-align              | `%-10d`, 42    | 42        |
+| `,`  | Group digits            | `%,d`, 1000000 | 1,000,000 |
+| `(`  | Negative in parentheses | `%(d`, -42     | (42)      |
+
