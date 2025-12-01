@@ -1,0 +1,107 @@
+// ==============================
+// Real-World Project: University Management System
+// Demonstrating ALL STATIC Uses:
+// - static variables
+// - static methods
+// - static block
+// - static nested class
+// - static final constants
+// ==============================
+
+// ------------------ University.java ------------------
+public class University {
+
+    // static variable - shared by all departments
+    static String universityName;
+
+    // static final constant
+    static final String COUNTRY = "India";
+
+    // static block - executed once when class loads
+    static {
+        universityName = "Tech Valley University";
+        System.out.println("University System Loading...");
+    }
+
+    // static method
+    public static void showUniversityInfo() {
+        System.out.println("University Name: " + universityName);
+        System.out.println("Country: " + COUNTRY);
+    }
+
+    // static nested class (Utility)
+    public static class Utils {
+        public static void welcomeMessage() {
+            System.out.println("Welcome to the University Portal!");
+        }
+    }
+}
+
+// ------------------ Department.java ------------------
+public class Department {
+
+    // static variable - shared by all objects
+    static int departmentCount = 0;
+
+    String departmentName;
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+        departmentCount++; // increasing shared counter
+    }
+
+    public void showDepartment() {
+        System.out.println("Department: " + departmentName);
+    }
+}
+
+// ------------------ Student.java ------------------
+public class Student {
+
+    static int studentCount = 0;
+
+    String name;
+    String department;
+
+    public Student(String name, String department) {
+        this.name = name;
+        this.department = department;
+        studentCount++;
+    }
+
+    public void showStudent() {
+        System.out.println("Student Name: " + name + " | Department: " + department);
+    }
+}
+
+// ------------------ Main.java ------------------
+public class Main {
+    public static void main(String[] args) {
+
+        // using static nested class
+        University.Utils.welcomeMessage();
+
+        // calling static method
+        University.showUniversityInfo();
+
+        // creating department objects
+        Department d1 = new Department("Computer Science");
+        Department d2 = new Department("Mechanical");
+
+        d1.showDepartment();
+        d2.showDepartment();
+
+        // creating students
+        Student s1 = new Student("Abhi", "Computer Science");
+        Student s2 = new Student("Rohan", "Mechanical");
+        Student s3 = new Student("Priya", "Computer Science");
+
+        s1.showStudent();
+        s2.showStudent();
+        s3.showStudent();
+
+        // showing static counters
+        System.out.println("Total Departments: " + Department.departmentCount);
+        System.out.println("Total Students: " + Student.studentCount);
+    }
+}
