@@ -1,0 +1,125 @@
+# 📁 School Management System (Java Project)
+
+Below is the full project structure.
+Each file is separated with a clear path.
+
+---
+
+## 📂 src/school/Person.java
+```java
+package school;
+
+public class Person {
+    private String name;        // private → only inside Person
+    protected int age;          // protected → subclasses + same package
+    public String role;         // public → anywhere
+
+    public Person(String name, int age, String role) {
+        this.name = name;
+        this.age = age;
+        this.role = role;
+    }
+
+    // Public wrapper method to access private variable
+    public String getName() {
+        return name;
+    }
+
+    private void secretInfo() {
+        System.out.println("This is private information!");
+    }
+
+    public void showSecret() {
+        secretInfo();  // wrapper for private method
+    }
+}
+```
+
+---
+
+## 📂 src/school/Student.java
+```java
+package school;
+
+public class Student extends Person {
+
+    protected String course;   // protected variable
+
+    public Student(String name, int age, String course) {
+        super(name, age, "Student");
+        this.course = course;
+    }
+
+    public void display() {
+        System.out.println("Name: " + getName());  // public wrapper → OK
+        System.out.println("Age: " + age);         // protected → OK (same package)
+        System.out.println("Course: " + course);
+        System.out.println("Role: " + role);       // public → OK
+    }
+
+    // Getter so Teacher or outside classes can access course
+    public String getCourse() {
+        return course;
+    }
+}
+```
+
+---
+
+## 📂 src/staff/Teacher.java
+```java
+package staff;
+
+import school.Person;
+import school.Student;
+
+public class Teacher extends Person {
+
+    public String subject;
+
+    public Teacher(String name, int age, String subject) {
+        super(name, age, "Teacher");
+        this.subject = subject;
+    }
+
+    public void display() {
+        System.out.println("Name: " + getName());            // ✔ public
+        System.out.println("Age: " + age);                   // ✔ protected via inheritance
+        System.out.println("Subject: " + subject);
+        System.out.println("Role: " + role);
+    }
+
+    public void checkStudentCourse(Student s) {
+        System.out.println("Student Course: " + s.getCourse());  // ✔ via public method
+    }
+}
+```
+
+---
+
+## 📂 src/school/MainApp.java
+```java
+package school;
+
+import staff.Teacher;
+
+public class MainApp {
+    public static void main(String[] args) {
+
+        Student s = new Student("Rahul", 20, "Computer Science");
+        Teacher t = new Teacher("Mr. Sharma", 35, "Math");
+
+        System.out.println("---- Student Info ----");
+        s.display();
+
+        System.out.println("\n---- Teacher Info ----");
+        t.display();
+
+        System.out.println("\n---- Teacher Checking Student Course ----");
+        t.checkStudentCourse(s);  // using getter
+    }
+}
+```
+
+---
+
